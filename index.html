@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" href="./assets/logo.png" />
+  <link rel="shortcut icon" type="image/png" href="./assets/logo.png" />
+  <title>Puskesmas Karangsari - Pelayanan Kesehatan Terpercaya</title>
+  <meta name="description"
+    content="Puskesmas Karangsari hadir untuk memberikan pelayanan kesehatan terbaik, terpercaya, dan profesional bagi seluruh masyarakat Garut dan sekitarnya." />
+
+  <!-- Google Fonts: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#f0fdf4',
+              100: '#dcfce7',
+              200: '#bbf7d0',
+              500: '#22c55e',
+              600: '#16a34a',
+              700: '#15803d',
+              800: '#0f6f46',
+              900: '#0b5234',
+              950: '#05311f',
+            },
+            accent: '#f59e0b',
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="./src/styles.css" />
+</head>
+
+<body class="font-sans antialiased text-gray-800 bg-gray-50 flex flex-col min-h-screen">
+
+  <!-- TOP HEADER / NAVBAR -->
+  <header
+    class="sticky top-0 z-40 bg-white/95 backdrop-blur-md shadow-sm border-b border-gray-100 transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+
+        <!-- Logo -->
+        <a href="index.html" class="flex items-center space-x-3 group">
+          <img src="./assets/logo.png" alt="Logo Puskesmas Karangsari"
+            class="w-12 h-12 rounded-full object-contain bg-white p-0.5 shadow-md group-hover:scale-105 transition-transform duration-200" />
+          <div>
+            <span class="block text-xl font-extrabold text-brand-800 leading-tight">Puskesmas Karangsari</span>
+            <span class="block text-xs text-gray-500 font-medium tracking-wide">Pusat Kesehatan Masyarakat</span>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation -->
+        <nav class="hidden lg:flex items-center space-x-8 font-medium text-sm text-gray-600">
+          <a href="tentang-kami.html" class="hover:text-brand-800 transition-colors">Profil</a>
+
+          <div class="relative group cursor-pointer py-2">
+            <button class="flex items-center space-x-1 hover:text-brand-800 transition-colors">
+              <span>Layanan</span>
+              <i data-lucide="chevron-down" class="w-4 h-4 transition-transform group-hover:rotate-180"></i>
+            </button>
+            <div
+              class="absolute top-full left-0 w-48 bg-white rounded-xl shadow-xl border border-gray-100 py-2 hidden group-hover:block animate-fade-in">
+              <a href="layanan.html" class="block px-4 py-2 hover:bg-brand-50 hover:text-brand-800">Layanan Tersedia</a>
+              <a href="jadwal.html" class="block px-4 py-2 hover:bg-brand-50 hover:text-brand-800">Jadwal</a>
+            </div>
+          </div>
+
+          <div class="relative group cursor-pointer py-2">
+            <button class="flex items-center space-x-1 hover:text-brand-800 transition-colors">
+              <span>Informasi</span>
+              <i data-lucide="chevron-down" class="w-4 h-4 transition-transform group-hover:rotate-180"></i>
+            </button>
+            <div
+              class="absolute top-full left-0 w-48 bg-white rounded-xl shadow-xl border border-gray-100 py-2 hidden group-hover:block animate-fade-in">
+              <a href="virtual-tour/index.htm"
+                class="block px-4 py-2 hover:bg-brand-50 hover:text-brand-800 font-semibold flex items-center justify-between"><span>Virtual
+                  Tour 360°</span><span
+                  class="px-1.5 py-0.5 bg-amber-400 text-brand-950 text-[10px] font-extrabold rounded">360°</span></a>
+              <a href="lokasi-kontak.html" class="block px-4 py-2 hover:bg-brand-50 hover:text-brand-800">Lokasi &
+                Kontak</a>
+            </div>
+          </div>
+        </nav>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button id="mobile-menu-btn"
+          class="lg:hidden text-gray-700 hover:text-brand-800 p-2 rounded-lg focus:outline-none">
+          <i data-lucide="menu" class="w-6 h-6"></i>
+        </button>
+
+      </div>
+    </div>
+
+    <!-- Mobile Drawer -->
+    <div id="mobile-menu" class="hidden lg:hidden bg-white border-b border-gray-200 px-4 pt-2 pb-6 space-y-3">
+      <a href="tentang-kami.html" class="block py-2 text-gray-700 hover:text-brand-800 font-medium">Profil</a>
+      <a href="layanan.html" class="block py-2 text-gray-700 hover:text-brand-800 font-medium">Layanan Tersedia</a>
+      <a href="jadwal.html" class="block py-2 text-gray-700 hover:text-brand-800 font-medium">Jadwal</a>
+      <a href="virtual-tour/index.htm" class="block py-2 text-brand-800 font-bold flex items-center space-x-2"><i
+          data-lucide="compass" class="w-4 h-4 text-emerald-600"></i><span>Virtual Tour 360°</span></a>
+      <a href="lokasi-kontak.html" class="block py-2 text-gray-700 hover:text-brand-800 font-medium">Lokasi & Kontak</a>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="relative bg-brand-900 text-white min-h-[580px] flex items-center overflow-hidden">
+    <!-- Hero Background Image with Overlay -->
+    <div class="absolute inset-0 z-0">
+      <img src="./assets/puskesmas.jpg" alt="Gedung Puskesmas Karangsari"
+        class="w-full h-full object-cover object-center scale-105" />
+      <div class="absolute inset-0 bg-gradient-to-r from-brand-950/95 via-brand-900/85 to-brand-900/40"></div>
+    </div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24 w-full">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+
+        <!-- Left Content -->
+        <div class="lg:col-span-7 space-y-6">
+
+          <!-- Badge -->
+          <div
+            class="inline-flex items-center space-x-2 bg-white/10 backdrop-blur-md px-4 py-1.5 rounded-full border border-white/20 text-xs sm:text-sm font-medium">
+            <span class="text-amber-400">🏥</span>
+            <span>Puskesmas Terpercaya sejak 1973</span>
+          </div>
+
+          <!-- Title -->
+          <h1 class="text-3xl sm:text-5xl lg:text-5xl font-extrabold leading-tight tracking-tight">
+            Melayani dengan <span class="text-amber-400">Ikhlas</span>,<br class="hidden sm:inline" />
+            Menyembuhkan dengan <span class="text-amber-400">Ihsan</span>
+          </h1>
+
+          <!-- Description -->
+          <p class="text-gray-200 text-base sm:text-lg max-w-2xl leading-relaxed font-light">
+            Puskesmas Karangsari hadir untuk memberikan pelayanan kesehatan terbaik, terpercaya, dan profesional bagi
+            seluruh masyarakat Garut dan sekitarnya.
+          </p>
+
+          <!-- Buttons -->
+          <div class="flex flex-wrap gap-4 pt-2">
+            <button onclick="openEmergencyModal()"
+              class="flex items-center space-x-2 bg-red-600 hover:bg-red-700 text-white px-6 py-3.5 rounded-2xl font-bold shadow-lg hover:shadow-red-600/30 transition-all duration-200 transform hover:-translate-y-0.5">
+              <i data-lucide="siren" class="w-5 h-5 animate-pulse"></i>
+              <span>IGD Darurat</span>
+            </button>
+
+            <a href="virtual-tour/index.htm"
+              class="flex items-center space-x-2 bg-white hover:bg-gray-100 text-brand-900 px-6 py-3.5 rounded-2xl font-bold shadow-lg transition-all duration-200 transform hover:-translate-y-0.5">
+              <i data-lucide="compass" class="w-5 h-5 text-brand-800"></i>
+              <span>Virtual Tour</span>
+            </a>
+          </div>
+
+        </div>
+
+        <!-- Right Quick Info Card -->
+        <div class="lg:col-span-5">
+          <div
+            class="bg-white rounded-3xl p-6 sm:p-8 text-gray-800 shadow-2xl border border-gray-100 backdrop-blur-lg transform hover:scale-[1.01] transition-transform duration-300">
+            <h3 class="text-xl font-extrabold text-brand-800 mb-6 flex items-center space-x-2">
+              <i data-lucide="info" class="w-6 h-6 text-brand-700"></i>
+              <span>Informasi Cepat</span>
+            </h3>
+
+            <div class="space-y-4">
+              <!-- Item 1: Telepon / Hotline -->
+              <div class="flex items-start space-x-4 bg-brand-50/70 p-3.5 rounded-2xl border border-brand-100">
+                <div
+                  class="w-10 h-10 rounded-xl bg-red-100 flex items-center justify-center text-red-600 flex-shrink-0">
+                  <i data-lucide="phone-call" class="w-5 h-5"></i>
+                </div>
+                <div>
+                  <span class="block text-xs font-semibold text-gray-500 uppercase tracking-wider">Telepon
+                    Puskesmas</span>
+                  <a href="tel:02622850097"
+                    class="text-base font-bold text-gray-900 hover:text-brand-800 transition-colors">(0262) 2850097</a>
+                </div>
+              </div>
+
+              <!-- Item 2: Jam Operasional -->
+              <div class="flex items-start space-x-4 bg-brand-50/70 p-3.5 rounded-2xl border border-brand-100">
+                <div
+                  class="w-10 h-10 rounded-xl bg-emerald-100 flex items-center justify-center text-brand-800 flex-shrink-0">
+                  <i data-lucide="clock" class="w-5 h-5"></i>
+                </div>
+                <div>
+                  <span class="block text-xs font-semibold text-gray-500 uppercase tracking-wider">Jam
+                    Operasional</span>
+                  <span class="text-base font-bold text-gray-900">Senin–Sabtu 08.00–16.00 WIB</span>
+                  <span class="block text-xs text-red-500 font-semibold">Minggu: Tutup</span>
+                </div>
+              </div>
+
+              <!-- Item 3: Alamat -->
+              <div class="flex items-start space-x-4 bg-brand-50/70 p-3.5 rounded-2xl border border-brand-100">
+                <div
+                  class="w-10 h-10 rounded-xl bg-amber-100 flex items-center justify-center text-amber-700 flex-shrink-0">
+                  <i data-lucide="map-pin" class="w-5 h-5"></i>
+                </div>
+                <div>
+                  <span class="block text-xs font-semibold text-gray-500 uppercase tracking-wider">Alamat</span>
+                  <span class="text-sm font-semibold text-gray-900 leading-snug block">Karangsari, Kec.
+                    Leuwigoong, Kabupaten Garut</span>
+                </div>
+              </div>
+
+
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FASILITAS & LAYANAN MEDIS SECTION -->
+  <section id="services" class="py-20 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <!-- Section Header -->
+      <div class="text-center max-w-3xl mx-auto space-y-3 mb-12">
+        <div
+          class="inline-block px-4 py-1.5 rounded-full bg-brand-100 text-brand-800 text-xs font-bold tracking-wider uppercase">
+          Pelayanan Terpadu
+        </div>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900">
+          Fasilitas & Layanan Medis
+        </h2>
+        <p class="text-gray-600 text-base sm:text-lg">
+          Puskesmas Karangsari siap melayani kesehatan masyarakat dengan fasilitas lengkap dan 9 layanan utama medis
+          terpercaya.
+        </p>
+      </div>
+
+      <!-- HIGHLIGHT FASILITAS BAR -->
+      <div class="bg-white rounded-3xl p-6 shadow-sm border border-gray-100 mb-12">
+        <h3 class="text-xs font-extrabold uppercase tracking-wider text-brand-800 mb-4 flex items-center space-x-2">
+          <i data-lucide="building-2" class="w-4 h-4 text-emerald-600"></i>
+          <span>Fasilitas Pelayanan Utama:</span>
+        </h3>
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 text-center">
+          <div class="bg-brand-50/70 p-3 rounded-2xl border border-brand-100">
+            <i data-lucide="clipboard-list" class="w-5 h-5 text-brand-800 mx-auto mb-1"></i>
+            <span class="block text-xs font-bold text-gray-800">Pendaftaran</span>
+          </div>
+          <div class="bg-brand-50/70 p-3 rounded-2xl border border-brand-100">
+            <i data-lucide="hospital" class="w-5 h-5 text-brand-800 mx-auto mb-1"></i>
+            <span class="block text-xs font-bold text-gray-800">Pelayanan Umum</span>
+          </div>
+          <div class="bg-brand-50/70 p-3 rounded-2xl border border-brand-100">
+            <i data-lucide="smile" class="w-5 h-5 text-brand-800 mx-auto mb-1"></i>
+            <span class="block text-xs font-bold text-gray-800">Poli Gigi</span>
+          </div>
+          <div class="bg-brand-50/70 p-3 rounded-2xl border border-brand-100">
+            <i data-lucide="heart" class="w-5 h-5 text-brand-800 mx-auto mb-1"></i>
+            <span class="block text-xs font-bold text-gray-800">KIA / KB</span>
+          </div>
+          <div class="bg-brand-50/70 p-3 rounded-2xl border border-brand-100">
+            <i data-lucide="syringe" class="w-5 h-5 text-brand-800 mx-auto mb-1"></i>
+            <span class="block text-xs font-bold text-gray-800">Imunisasi</span>
+          </div>
+          <div class="bg-brand-50/70 p-3 rounded-2xl border border-brand-100">
+            <i data-lucide="baby" class="w-5 h-5 text-brand-800 mx-auto mb-1"></i>
+            <span class="block text-xs font-bold text-gray-800">MTBS</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 9 LAYANAN MEDIS GRID -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+        <!-- Layanan 1 -->
+        <div
+          class="bg-white rounded-3xl p-8 border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 group">
+          <div
+            class="w-14 h-14 rounded-2xl bg-emerald-100 text-brand-800 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-brand-800 group-hover:text-white transition-all duration-300">
+            <i data-lucide="clipboard-list" class="w-7 h-7"></i>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-3 group-hover:text-brand-800 transition-colors">Pendaftaran
+            Pasien</h3>
+          <p class="text-gray-600 text-sm leading-relaxed">
+            Registrasi pasien cepat, ramah, dan terstruktur baik secara langsung maupun pendaftaran online.
+          </p>
+        </div>
+
+        <!-- Layanan 2 -->
+        <div
+          class="bg-white rounded-3xl p-8 border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 group">
+          <div
+            class="w-14 h-14 rounded-2xl bg-emerald-100 text-brand-800 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-brand-800 group-hover:text-white transition-all duration-300">
+            <i data-lucide="hospital" class="w-7 h-7"></i>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-3 group-hover:text-brand-800 transition-colors">Pelayanan
+            Pemeriksaan Umum</h3>
+          <p class="text-gray-600 text-sm leading-relaxed">
+            Pemeriksaan kesehatan menyeluruh, konsultasi medis, diagnosis, dan terapi pengobatan dasar.
+          </p>
+        </div>
+
+        <!-- Layanan 3 -->
+        <div
+          class="bg-white rounded-3xl p-8 border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 group">
+          <div
+            class="w-14 h-14 rounded-2xl bg-emerald-100 text-brand-800 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-brand-800 group-hover:text-white transition-all duration-300">
+            <i data-lucide="smile" class="w-7 h-7"></i>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-3 group-hover:text-brand-800 transition-colors">Pelayanan
+            Kesehatan Gigi & Mulut</h3>
+          <p class="text-gray-600 text-sm leading-relaxed">
+            Pemeriksaan, penambalan, pencabutan gigi, serta pembersihan karang gigi oleh dokter gigi ahli.
+          </p>
+        </div>
+
+        <!-- Layanan 4 -->
+        <div
+          class="bg-white rounded-3xl p-8 border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 group">
+          <div
+            class="w-14 h-14 rounded-2xl bg-emerald-100 text-brand-800 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-brand-800 group-hover:text-white transition-all duration-300">
+            <i data-lucide="heart" class="w-7 h-7"></i>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-3 group-hover:text-brand-800 transition-colors">Kesehatan Ibu &
+            Anak (KIA) / KB</h3>
+          <p class="text-gray-600 text-sm leading-relaxed">
+            Pemeriksaan kehamilan rutin, kesehatan pascamelahirkan, serta konsultasi dan pelayanan KB.
+          </p>
+        </div>
+
+        <!-- Layanan 5 -->
+        <div
+          class="bg-white rounded-3xl p-8 border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 group">
+          <div
+            class="w-14 h-14 rounded-2xl bg-emerald-100 text-brand-800 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-brand-800 group-hover:text-white transition-all duration-300">
+            <i data-lucide="baby" class="w-7 h-7"></i>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-3 group-hover:text-brand-800 transition-colors">MTBS (Manajemen
+            Terpadu Balita Sakit)</h3>
+          <p class="text-gray-600 text-sm leading-relaxed">
+            Penanganan balita sakit secara komprehensif, pemantauan gizi, serta penanganan infeksi anak.
+          </p>
+        </div>
+
+        <!-- Layanan 6 -->
+        <div
+          class="bg-white rounded-3xl p-8 border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 group">
+          <div
+            class="w-14 h-14 rounded-2xl bg-emerald-100 text-brand-800 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-brand-800 group-hover:text-white transition-all duration-300">
+            <i data-lucide="syringe" class="w-7 h-7"></i>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-3 group-hover:text-brand-800 transition-colors">Pelayanan
+            Imunisasi Rutin</h3>
+          <p class="text-gray-600 text-sm leading-relaxed">
+            Pemberian vaksinasi dan imunisasi dasar lengkap bagi bayi dan anak-anak secara teratur.
+          </p>
+        </div>
+
+        <!-- Layanan 7 -->
+        <div
+          class="bg-white rounded-3xl p-8 border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 group">
+          <div
+            class="w-14 h-14 rounded-2xl bg-emerald-100 text-brand-800 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-brand-800 group-hover:text-white transition-all duration-300">
+            <i data-lucide="activity" class="w-7 h-7"></i>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-3 group-hover:text-brand-800 transition-colors">Skrining Anak
+            Sekolah & PTM</h3>
+          <p class="text-gray-600 text-sm leading-relaxed">
+            Pemeriksaan kesehatan anak sekolah serta deteksi dini Penyakit Tidak Menular (hipertensi, diabetes).
+          </p>
+        </div>
+
+        <!-- Layanan 8 -->
+        <div
+          class="bg-white rounded-3xl p-8 border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 group">
+          <div
+            class="w-14 h-14 rounded-2xl bg-emerald-100 text-brand-800 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-brand-800 group-hover:text-white transition-all duration-300">
+            <i data-lucide="home" class="w-7 h-7"></i>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-3 group-hover:text-brand-800 transition-colors">Kunjungan Rumah
+          </h3>
+          <p class="text-gray-600 text-sm leading-relaxed">
+            Pendampingan langsung ke rumah pasien untuk pemantauan gizi, ibu hamil, TBC, dan BBLR (Bayi Berat Lahir
+            Rendah).
+          </p>
+        </div>
+
+        <!-- Layanan 9 -->
+        <div
+          class="bg-white rounded-3xl p-8 border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 group">
+          <div
+            class="w-14 h-14 rounded-2xl bg-emerald-100 text-brand-800 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-brand-800 group-hover:text-white transition-all duration-300">
+            <i data-lucide="pill" class="w-7 h-7"></i>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-3 group-hover:text-brand-800 transition-colors">Obat & Farmasi
+          </h3>
+          <p class="text-gray-600 text-sm leading-relaxed">
+            Penyediaan resep obat lengkap, terjamin keasliannya, aman, serta edukasi konsumsi obat oleh apoteker.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- JADWAL PELAYANAN RINGKASAN SECTION -->
+  <section class="py-16 bg-white border-t border-gray-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <div
+        class="bg-gradient-to-r from-brand-900 via-brand-800 to-brand-900 text-white rounded-3xl p-8 sm:p-12 shadow-2xl relative overflow-hidden">
+
+        <!-- Decorative Circle -->
+        <div class="absolute -right-16 -bottom-16 w-64 h-64 bg-white/5 rounded-full blur-2xl pointer-events-none"></div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
+
+          <!-- Left Header & CTA -->
+          <div class="lg:col-span-5 space-y-4">
+            <div
+              class="inline-flex items-center space-x-2 bg-white/10 backdrop-blur-md px-3.5 py-1 rounded-full text-xs font-semibold text-emerald-200 border border-white/10">
+              <i data-lucide="clock" class="w-3.5 h-3.5 text-amber-400"></i>
+              <span>Jam Operasional</span>
+            </div>
+
+            <h2 class="text-2xl sm:text-4xl font-extrabold leading-tight">
+              Informasi Jadwal Pelayanan Medis
+            </h2>
+
+            <p class="text-emerald-100 text-sm leading-relaxed font-light">
+              Puskesmas Karangsari siap melayani masyarakat dengan jam buka teratur untuk semua instalasi dan poli
+              kesehatan.
+            </p>
+
+            <div class="pt-2">
+              <a href="jadwal.html"
+                class="inline-flex items-center space-x-2 bg-amber-400 hover:bg-amber-500 text-brand-950 px-6 py-3 rounded-xl text-sm font-extrabold shadow-lg transition-all transform hover:-translate-y-0.5">
+                <span>Lihat Jadwal Lengkap & Dokter</span>
+                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Right Grid (3 Cards) -->
+          <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-3 gap-4 text-gray-800">
+
+            <!-- Card 1: IGD -->
+            <div class="bg-white rounded-2xl p-5 shadow-sm space-y-2 border border-gray-100">
+              <div class="w-10 h-10 rounded-xl bg-red-100 text-red-600 flex items-center justify-center font-bold">
+                <i data-lucide="siren" class="w-5 h-5"></i>
+              </div>
+              <h3 class="font-extrabold text-base text-gray-900">IGD & Ambulans</h3>
+              <span class="inline-block px-2.5 py-1 bg-red-50 text-red-600 text-xs font-bold rounded-lg">24 Jam
+                Non-Stop</span>
+              <p class="text-xs text-gray-500">Pertolongan darurat medis 7 hari seminggu.</p>
+            </div>
+
+            <!-- Card 2: Poli Rawat Jalan -->
+            <div class="bg-white rounded-2xl p-5 shadow-sm space-y-2 border border-gray-100">
+              <div
+                class="w-10 h-10 rounded-xl bg-emerald-100 text-brand-800 flex items-center justify-center font-bold">
+                <i data-lucide="hospital" class="w-5 h-5"></i>
+              </div>
+              <h3 class="font-extrabold text-base text-gray-900">Poli Rawat Jalan</h3>
+              <span class="inline-block px-2.5 py-1 bg-emerald-50 text-brand-800 text-xs font-bold rounded-lg">08.00 –
+                16.00 WIB</span>
+              <p class="text-xs text-gray-500">Senin – Sabtu (Minggu Tutup).</p>
+            </div>
+
+            <!-- Card 3: Dokter Spesialis -->
+            <div class="bg-white rounded-2xl p-5 shadow-sm space-y-2 border border-gray-100">
+              <div class="w-10 h-10 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center font-bold">
+                <i data-lucide="calendar" class="w-5 h-5"></i>
+              </div>
+              <h3 class="font-extrabold text-base text-gray-900">Poli Spesialis</h3>
+              <span class="inline-block px-2.5 py-1 bg-amber-50 text-amber-800 text-xs font-bold rounded-lg">08.00 –
+                13.00 WIB</span>
+              <p class="text-xs text-gray-500">Sesuai jadwal dokter praktik.</p>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- VIRTUAL TOUR 360° BANNER SECTION -->
+  <section
+    class="py-14 bg-gradient-to-r from-brand-900 via-brand-800 to-emerald-900 text-white relative overflow-hidden shadow-2xl">
+    <div
+      class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
+      <div class="space-y-3 text-center md:text-left">
+        <span
+          class="inline-block px-3.5 py-1.5 bg-amber-400 text-brand-950 text-xs font-extrabold rounded-full tracking-wider uppercase shadow-sm">
+          🌐 Pengalaman Interaktif 360°
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight">
+          Virtual Tour Puskesmas Karangsari
+        </h2>
+        <p class="text-emerald-100 text-base max-w-2xl font-light">
+          Jelajahi setiap ruang perawatan, fasilitas pendaftaran, poli spesialis, dan area layanan kami secara
+          interaktif melalui tur digital 360 derajat.
+        </p>
+      </div>
+      <a href="virtual-tour/index.htm"
+        class="px-8 py-4 bg-amber-400 hover:bg-amber-500 text-brand-950 font-extrabold rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-0.5 flex items-center space-x-3 flex-shrink-0 text-base">
+        <i data-lucide="compass" class="w-6 h-6"></i>
+        <span>Buka Virtual Tour 360°</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- AKREDITASI & SERTIFIKASI SECTION -->
+  <section id="accreditation" class="py-20 bg-brand-900 text-white relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+
+      <!-- Header -->
+      <div class="text-center max-w-2xl mx-auto space-y-3 mb-14">
+        <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight">
+          Akreditasi & Sertifikasi
+        </h2>
+        <p class="text-emerald-100 text-base sm:text-lg font-light">
+          Dipercaya dan telah tersertifikasi secara nasional
+        </p>
+      </div>
+
+      <!-- Certificate Image Display -->
+      <div
+        class="max-w-4xl mx-auto bg-white/10 backdrop-blur-md p-4 sm:p-8 rounded-3xl border border-white/20 shadow-2xl">
+        <div class="overflow-hidden rounded-2xl bg-white p-2 shadow-lg">
+          <img src="./assets/sertifikat-akreditasi.jpeg" alt="Sertifikat Akreditasi Paripurna Puskesmas Karangsari"
+            class="w-full h-auto rounded-xl object-contain max-h-[550px] mx-auto hover:scale-[1.01] transition-transform duration-300" />
+        </div>
+        <div class="text-center mt-6 space-y-2">
+          <span
+            class="inline-block px-5 py-2 bg-amber-400 text-brand-950 rounded-full font-extrabold text-sm tracking-wide shadow-md">
+            🏆 AKREDITASI PARIPURNA
+          </span>
+          <p class="text-emerald-100 text-xs sm:text-sm font-semibold">
+            Nomor: YM.02.01/D/9955/2023 | Masa Berlaku: 19 Agustus 2023 s.d 19 Agustus 2028
+          </p>
+          <p class="text-xs text-gray-300">
+            Diberikan oleh Kementerian Kesehatan Republik Indonesia sebagai pengakuan bahwa Puskesmas Karangsari telah
+            memenuhi standar akreditasi dan dinyatakan lulus PARIPURNA.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- TENTANG KAMI SECTION -->
+  <section id="about" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+
+        <!-- Left Image with Badge -->
+        <div class="lg:col-span-6 relative">
+          <div class="relative rounded-3xl overflow-hidden shadow-2xl border border-gray-100">
+            <img src="./assets/puskesmas.jpg" alt="Pelayanan Pasien Puskesmas Karangsari"
+              class="w-full h-[420px] object-cover" />
+          </div>
+
+          <!-- Floating Badge -->
+          <div
+            class="absolute -bottom-6 -right-2 sm:right-6 bg-brand-800 text-white p-6 rounded-3xl shadow-xl max-w-[240px] border-4 border-white">
+            <div class="text-sm font-medium leading-snug mt-1">Puskesmas Karangsari</div>
+          </div>
+        </div>
+
+        <!-- Right Content -->
+        <div class="lg:col-span-6 space-y-6">
+          <div
+            class="inline-block px-4 py-1.5 rounded-full bg-brand-100 text-brand-800 text-xs font-bold tracking-wider uppercase">
+            Tentang Kami
+          </div>
+
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 leading-tight">
+            Puskesmas Terpercaya di Karangsari
+          </h2>
+
+          <p class="text-gray-600 text-sm sm:text-base leading-relaxed">
+            Puskesmas Karangsari merupakan fasilitas kesehatan tingkat pertama (FKTP) terpercaya di Kabupaten Garut
+            dengan fasilitas dan ruangan lengkap seperti Ruang Pendaftaran, Ruang Tunggu, Ruang Pemeriksaan Umum, Poli
+            Gigi, Poli KIA, Ruang Tindakan, dan Apotek.
+          </p>
+
+          <p class="text-gray-600 text-sm sm:text-base leading-relaxed">
+            Untuk mempermudah masyarakat dalam memperoleh gambaran tata letak dan fasilitas puskesmas secara fleksibel,
+            tersedia media informasi Virtual Tour berbasis web dengan panorama 360° yang dapat diakses secara interaktif
+            dari mana saja.
+          </p>
+
+          <!-- Button -->
+          <div class="pt-4">
+            <button
+              class="px-8 py-3.5 bg-brand-800 hover:bg-brand-900 text-white rounded-2xl font-bold shadow-lg transition-all duration-200">
+              Selengkapnya Tentang Puskesmas
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- MEDIA SOSIAL SECTION -->
+  <section id="social-media" class="py-20 bg-gray-50 border-t border-gray-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <!-- Section Header -->
+      <div class="text-center max-w-2xl mx-auto space-y-3 mb-14">
+        <div class="inline-flex items-center space-x-2 text-brand-800 text-xs font-bold tracking-widest uppercase">
+          <span class="w-6 h-0.5 bg-brand-800"></span>
+          <i data-lucide="share-2" class="w-4 h-4 text-brand-700"></i>
+          <span>Media Sosial</span>
+        </div>
+
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900">
+          Ikuti Kami di Media Sosial
+        </h2>
+
+        <p class="text-gray-600 text-base sm:text-lg">
+          Dapatkan informasi dan konten terbaru dari kami.
+        </p>
+      </div>
+
+      <!-- Social Media Cards Grid (2 Platforms Utama) -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+
+        <!-- Platform 1: Facebook -->
+        <div
+          class="bg-white rounded-3xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 group">
+          <div class="bg-blue-600 p-5 text-white flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+              <i data-lucide="facebook" class="w-7 h-7"></i>
+              <span class="font-bold text-lg">Facebook</span>
+            </div>
+            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer"
+              class="text-xs font-bold bg-white/20 hover:bg-white/30 backdrop-blur-sm px-3.5 py-1.5 rounded-full transition-colors flex items-center space-x-1">
+              <span>Buka Facebook</span>
+              <span>→</span>
+            </a>
+          </div>
+          <div class="p-6 space-y-3">
+            <div>
+              <span class="block text-xs font-semibold text-gray-400 uppercase tracking-wider">Halaman Resmi FB</span>
+              <span class="text-xl font-extrabold text-gray-900 group-hover:text-brand-800 transition-colors">UPT
+                puskesmas Karangsari</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Platform 2: Instagram -->
+        <div
+          class="bg-white rounded-3xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 group">
+          <div
+            class="bg-gradient-to-r from-purple-600 via-pink-600 to-rose-500 p-5 text-white flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+              <i data-lucide="instagram" class="w-7 h-7"></i>
+              <span class="font-bold text-lg">Instagram</span>
+            </div>
+            <a href="https://instagram.com/puskemas_karangsari" target="_blank" rel="noopener noreferrer"
+              class="text-xs font-bold bg-white/20 hover:bg-white/30 backdrop-blur-sm px-3.5 py-1.5 rounded-full transition-colors flex items-center space-x-1">
+              <span>Buka Instagram</span>
+              <span>→</span>
+            </a>
+          </div>
+          <div class="p-6 space-y-3">
+            <div>
+              <span class="block text-xs font-semibold text-gray-400 uppercase tracking-wider">Akun Resmi
+                Instagram</span>
+              <span
+                class="text-xl font-extrabold text-gray-900 group-hover:text-brand-800 transition-colors">@puskemas_karangsari</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer id="contact" class="bg-gray-900 text-gray-300 py-16 border-t border-gray-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+
+        <!-- Col 1: Brand -->
+        <div class="space-y-4">
+          <div class="flex items-center space-x-3">
+            <img src="./assets/logo.png" alt="Logo Puskesmas Karangsari"
+              class="w-10 h-10 rounded-full bg-white p-0.5 object-contain" />
+            <span class="text-lg font-bold text-white">Puskesmas Karangsari</span>
+          </div>
+          <p class="text-sm text-gray-400 leading-relaxed">
+            Memberikan pelayanan kesehatan yang ramah, profesional, dan terjangkau untuk seluruh masyarakat.
+          </p>
+        </div>
+
+        <!-- Col 2: Quick Links -->
+        <div>
+          <h4 class="text-white font-bold mb-4">Navigasi Cepat</h4>
+          <ul class="space-y-2.5 text-sm">
+            <li><a href="#about" class="hover:text-brand-500 transition-colors">Profil & Visi Misi</a></li>
+            <li><a href="#services" class="hover:text-brand-500 transition-colors">Fasilitas & Layanan</a></li>
+            <li><a href="#doctors" class="hover:text-brand-500 transition-colors">Jadwal Dokter</a></li>
+            <li><a href="virtual-tour/index.htm" class="hover:text-brand-500 transition-colors font-semibold">Virtual
+                Tour 360°</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Contact Info -->
+        <div>
+          <h4 class="text-white font-bold mb-4">Hubungi Kami</h4>
+          <ul class="space-y-3 text-sm">
+            <li class="flex items-start space-x-3">
+              <i data-lucide="map-pin" class="w-5 h-5 text-brand-500 flex-shrink-0 mt-0.5"></i>
+              <span>Karangsari, Kec. Leuwigoong, Kabupaten Garut, Jawa Barat 44192</span>
+            </li>
+            <li class="flex items-center space-x-3">
+              <i data-lucide="phone" class="w-5 h-5 text-brand-500 flex-shrink-0"></i>
+              <a href="tel:02622850097" class="hover:underline">(0262) 2850097</a>
+            </li>
+            <li class="flex items-center space-x-3">
+              <i data-lucide="mail" class="w-5 h-5 text-brand-500 flex-shrink-0"></i>
+              <a href="mailto:pkm.karangsari3@gmail.com" class="hover:underline">pkm.karangsari3@gmail.com</a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Col 4: Operating Hours -->
+        <div>
+          <h4 class="text-white font-bold mb-4">Jam Pelayanan</h4>
+          <div class="bg-gray-800 p-4 rounded-2xl border border-gray-700 space-y-2 text-xs">
+            <div class="flex justify-between">
+              <span class="text-gray-400">Poli Rawat Jalan:</span>
+              <span class="text-white">08.00 - 16.00 WIB</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-gray-400">Hari Layanan:</span>
+              <span class="text-white">Senin – Sabtu</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-gray-400">Minggu:</span>
+              <span class="text-red-400 font-bold">Tutup</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="mt-12 pt-8 border-t border-gray-800 text-center text-xs text-gray-500">
+        &copy; 2026 Puskesmas Karangsari. All Rights Reserved. Designed with Tailwind CSS.
+      </div>
+    </div>
+  </footer>
+
+
+
+  <!-- MODAL: IGD DARURAT -->
+  <div id="emergency-modal"
+    class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm hidden animate-fade-in">
+    <div class="bg-white rounded-3xl max-w-md w-full p-6 text-center shadow-2xl relative border border-gray-100">
+      <button onclick="closeEmergencyModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 p-1">
+        <i data-lucide="x" class="w-6 h-6"></i>
+      </button>
+
+      <div
+        class="w-16 h-16 bg-red-100 text-red-600 rounded-full flex items-center justify-center mx-auto mb-4 animate-bounce">
+        <i data-lucide="siren" class="w-8 h-8"></i>
+      </div>
+
+      <h3 class="text-2xl font-extrabold text-gray-900 mb-2">Layanan IGD 24 Jam</h3>
+      <p class="text-sm text-gray-600 mb-6">
+        Tim Medis Gawat Darurat Siap Sedia 24/7. Hubungi nomor panggilan cepat di bawah ini:
+      </p>
+
+      <a href="tel:02622850097"
+        class="block w-full py-4 bg-red-600 hover:bg-red-700 text-white text-xl font-extrabold rounded-2xl shadow-lg hover:shadow-red-600/30 transition-all duration-200 mb-3">
+        📞 (0262) 2850097
+      </a>
+
+      <p class="text-xs text-gray-400">
+        Lokasi: Karangsari, Kec. Leuwigoong, Kabupaten Garut (Pintu Utama)
+      </p>
+    </div>
+  </div>
+
+  <!-- JavaScript -->
+  <script src="./src/main.js"></script>
+</body>
+
+</html>
